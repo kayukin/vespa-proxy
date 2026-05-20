@@ -1,0 +1,20 @@
+# vespa-proxy configuration
+# Supports ${ENV_VAR} substitution anywhere in this file.
+
+listen_addr: "localhost:8080"
+vespa_url: "https://abc.vespa-app.cloud/"
+upstream_timeout_sec: 30
+
+tls:
+  # Option A — file paths (mount as Docker secrets / Kubernetes volume)
+  cert_file: "/etc/certs/public-cert.pem"
+  key_file:  "/etc/private-key.pem"
+  ca_file:   ""          # optional; leave empty to use system CA pool
+
+  # Option B — inline PEM via environment variable substitution
+  # cert_pem: "${TLS_CERT_PEM}"
+  # key_pem:  "${TLS_KEY_PEM}"
+  # ca_pem:   "${TLS_CA_PEM}"
+
+  # Disable server certificate verification — development only!
+  skip_verify: false

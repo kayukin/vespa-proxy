@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="db-forest-configuration">
+    <data version="2">.
+	1:0:4b72a903-b414-4487-ac9c-5bed4362145f:DEV
+	7:0:9fe8be47-b22d-490c-be98-beacf4c03270:PROD
+	12:0:624da180-717a-49bc-aa0e-2bc9e1bcf5bc:STAGE
+	16:0:56d9085c-26d4-46f8-a7fb-c39c051ade14:local
+	----------------------------------------
+	2:1:4b55aa48-36da-41bf-ace0-4a8323243a39
+	3:1:cd73a64e-2fcc-49cb-bac4-9ba25cdbfc59
+	4:1:a4fa28c3-c842-4859-a521-a4e9e6f57400
+	5:1:99b7719e-8cba-461f-b915-287eff282302
+	6:1:435881da-5d92-4dd0-bbcb-98e5f1784f00
+	8:7:bb6136a4-0b57-4da8-afb7-c2f808679981
+	9:7:4b5e84e9-9a78-4ee4-bec9-a7293d6f0094
+	10:7:ea8442f8-0ccb-4d03-a835-6a668994b3c0
+	11:7:67448c08-8825-4225-8fdd-c1cf9b715795
+	13:12:680ada4e-be86-4e86-8a71-02a6a867bd41
+	14:12:d76fb9fb-a739-4c23-8c41-593a3838f487
+	15:12:9ac28301-500a-418b-bf13-784c419076cf
+	17:16:3298e155-a94d-4f3b-82c2-b3be855980ef
+	18:16:95d80846-1798-4161-a988-60f00eca8cc7
+		.</data>
+  </component>
+</project>
