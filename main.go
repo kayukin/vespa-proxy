@@ -15,6 +15,8 @@ import (
 	"vespa-proxy/internal/config"
 	"vespa-proxy/internal/proxy"
 	"vespa-proxy/internal/ui"
+
+	"github.com/jchv/go-webview-selector"
 )
 
 func main() {
@@ -77,19 +79,27 @@ func main() {
 		serverErr <- server.ListenAndServe()
 	}()
 
-	select {
-	case err := <-serverErr:
-		if !errors.Is(err, http.ErrServerClosed) {
-			slog.Error("server error", "error", err)
-			os.Exit(1)
-		}
-	case sig := <-shutdown:
-		slog.Info("shutdown signal received", "signal", sig)
-		ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
-		defer cancel()
-		if err := server.Shutdown(ctx); err != nil {
-			slog.Error("graceful shutdown failed", "error", err)
-		}
+	w := webview.New(false)
+	if w == nil {
+		slog.Error("Failed to create webview")
+		os.Exit(1)
+	}
+	w.SetTitle("Vespa Proxy")
+	w.SetSize(1280, 720, webview.HintNone)
+	w.Navigate(cfg.ListenAddr)
+	defer w.Destroy()
+	w.Run()
+
+	slog.Info("window closed, shutting down")
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+	if err = server.Shutdown(ctx); err != nil {
+		slog.Error("graceful shutdown failed", "error", err)
+	}
+
+	if err = <-serverErr; !errors.Is(err, http.ErrServerClosed) {
+		slog.Error("server error", "error", err)
+		os.Exit(1)
 	}
 
 	slog.Info("server stopped")
